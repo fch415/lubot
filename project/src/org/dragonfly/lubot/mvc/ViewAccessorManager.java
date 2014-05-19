@@ -1,4 +1,4 @@
-package org.dragonfly.lubot.core;
+package org.dragonfly.lubot.mvc;
 
 import java.util.HashMap;
 import java.util.Map;

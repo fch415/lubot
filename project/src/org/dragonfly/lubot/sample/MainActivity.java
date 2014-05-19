@@ -5,10 +5,10 @@ import java.beans.PropertyChangeListener;
 
 
 import org.dragonfly.lubot.R;
-import org.dragonfly.lubot.core.ModelSupport;
-import org.dragonfly.lubot.core.ViewChangeEvent;
-import org.dragonfly.lubot.core.ViewChangeListener;
-import org.dragonfly.lubot.core.ViewSupport;
+import org.dragonfly.lubot.mvc.ModelSupport;
+import org.dragonfly.lubot.mvc.ViewChangeEvent;
+import org.dragonfly.lubot.mvc.ViewChangeListener;
+import org.dragonfly.lubot.mvc.ViewSupport;
 import org.dragonfly.lubot.sample.model.SampleBean;
 import org.dragonfly.lubot.util.LuLog;
 

@@ -1,4 +1,4 @@
-package org.dragonfly.lubot.core;
+package org.dragonfly.lubot.mvc;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,21 +9,36 @@ public class ViewSupport<T> {
 
 	@SuppressWarnings("unchecked")
 	public ViewSupport(T view) {
+		if (view == null) {
+			throw new IllegalArgumentException(this.getClass()
+					+ " 's View is null!");
+		}
+
 		this.view = view;
 		this.listeners = new ArrayList<ViewChangeListener<T>>();
+	}
 
-		this.accessor = (ViewAccessor<T>) ViewAccessorManager.find(this.view
-				.getClass());
+	public ViewAccessor<T> getAccessor() {
+		if (accessor == null) {
+			accessor = (ViewAccessor<T>) ViewAccessorManager.find(this.view
+					.getClass());
+		}
+		return accessor;
+	}
+
+	public void setAccessor(ViewAccessor<T> accessor) {
+		this.accessor = accessor;
 	}
 
 	public T getView() {
 		return view;
 	}
-	
-	public Object getValue(){
-		return this.accessor.getValue(view);
+
+	public Object getValue() {
+		ViewAccessor<T> accessor = this.getAccessor();
+		return accessor == null ? null : accessor.getValue(view);
 	}
-	
+
 	private List<ViewChangeListener<T>> listeners = null;
 
 	public void addChangeListener(ViewChangeListener<T> listener) {
@@ -51,9 +66,15 @@ public class ViewSupport<T> {
 	}
 
 	public void updateValue(Object newValue, boolean isSlient) {
-		Object oldValue = this.accessor.getValue(view);
+		ViewAccessor<T> va = this.getAccessor();
+		if (va == null) {
+			throw new IllegalAccessError(this.getView()
+					+ " 's ViewAccessor is null!");
+		}
 
-		this.accessor.setValue(view, newValue);
+		Object oldValue = va.getValue(view);
+
+		va.setValue(view, newValue);
 		if (!isSlient)
 			this.fireChangeEvent(oldValue, newValue);
 	}

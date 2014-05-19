@@ -1,4 +1,4 @@
-package org.dragonfly.lubot.core;
+package org.dragonfly.lubot.mvc;
 
 
 public interface ViewChangeListener<T>{

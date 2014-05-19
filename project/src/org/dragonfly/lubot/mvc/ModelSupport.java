@@ -1,4 +1,4 @@
-package org.dragonfly.lubot.core;
+package org.dragonfly.lubot.mvc;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

@@ -1,6 +1,6 @@
 package org.dragonfly.lubot.accessor;
 
-import org.dragonfly.lubot.core.ViewAccessor;
+import org.dragonfly.lubot.mvc.ViewAccessor;
 
 import android.widget.TextView;
 
